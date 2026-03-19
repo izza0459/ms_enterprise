@@ -1,0 +1,408 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPGL Sheets — Pre-Painted Galvalume | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active {
+            background-color: hsl(206, 91%, 30%);
+            color: white;
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground text-sm">Home</a>
+                        <a href="{% url 'catalog' %}" class="text-muted-foreground hover:text-foreground text-sm">Catalog</a>
+                        <a href="{% url 'home' %}#contact" class="text-muted-foreground hover:text-foreground text-sm">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-[hsl(206,91%,30%)] text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Steel Products
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">PPGL Sheets</h1>
+                    <p class="text-xl text-slate-600 mb-6">
+                        Pre-painted galvalume sheets for industrial roofing, wall cladding and cold-store envelopes — colour-coated, corrosion-resistant and long-lasting.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Thickness 0.20–1.50 mm
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            AZ50–AZ150 galvalume coatings
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Roof and wall profiles available
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="{% url 'home' %}#contact" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="{% static 'images/construction.jpg' %}" alt="PPGL Pre-Painted Galvalume Sheets" class="rounded-lg shadow-lg w-full" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Specifications</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    High-level ranges for planning — exact availability and colour options are confirmed at order stage.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex border-b mb-6">
+                    <button class="tab-button active px-6 py-3 font-medium rounded-t-lg" onclick="showTab('specifications')">
+                        Specifications
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('coatings')">
+                        Coatings & Finishes
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('applications')">
+                        Applications
+                    </button>
+                </div>
+
+                <div id="specifications" class="tab-content active">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Dimensional Range</h3>
+                        <p class="text-slate-600 mb-6">Standard dimensions for roofing and cladding supply</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Thickness</span>
+                                    <span>0.20–1.50 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Width</span>
+                                    <span>Typical coil widths up to 1250 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Length</span>
+                                    <span>Cut to project requirement</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Base Metal</span>
+                                    <span>55% Al-Zn galvalume</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Surface</span>
+                                    <span>Glossy, matte or textured</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Typical Use</span>
+                                    <span>PEB roofs, facades, cold storage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="coatings" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Coatings & Paint Systems</h3>
+                        <p class="text-slate-600 mb-6">Available coating weights and paint system options</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">AZ50</div>
+                                <div class="text-xs text-slate-500 mt-1">Standard</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">AZ100</div>
+                                <div class="text-xs text-slate-500 mt-1">Medium</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">AZ150</div>
+                                <div class="text-xs text-slate-500 mt-1">Heavy duty</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">Polyester</div>
+                                <div class="text-xs text-slate-500 mt-1">Paint system</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">SMP</div>
+                                <div class="text-xs text-slate-500 mt-1">Paint system</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">PVDF</div>
+                                <div class="text-xs text-slate-500 mt-1">Premium system</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applications" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Applications</h3>
+                        <p class="text-slate-600 mb-6">Designed for external envelopes exposed to weather and aggressive atmospheres</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Industrial roofing — factories and warehouses</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Wall cladding and architectural facades</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Cold storage panels and skins</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>PEB roof and wall systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Logistics and commercial buildings</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Agricultural and rural structures</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Variants -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Product Variants</h2>
+                <p class="text-slate-600">Profile and application options for your envelope system</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Roofing Profile</h3>
+                    <p class="text-slate-600 text-sm">Trapezoidal and corrugated profiles for industrial and commercial roof spans.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-lg font-bold mb-2">Wall Cladding</h3>
+                    <p class="text-slate-600 text-sm">Flat and ribbed panels for architectural facades and building envelopes.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Cold Store Panel</h3>
+                    <p class="text-slate-600 text-sm">High-coating-weight sheets for temperature-controlled environments.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-lg font-bold mb-2">Custom Profile</h3>
+                    <p class="text-slate-600 text-sm">Bespoke widths, lengths and colour codes matched to your PEB design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Orders -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Pricing & Orders</h2>
+                <p class="text-slate-600">Competitive pricing with volume discounts available</p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-slate-600 mb-6">
+                    Pricing depends on coating weight, paint system and order volume. Share your roof and wall schedule for a tailored quote.
+                </p>
+                <a href="{% url 'home' %}#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium inline-block">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality & Assurance -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quality & Assurance</h2>
+                <p class="text-slate-600">Coating integrity and colour consistency guaranteed across every delivery</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">STD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Industry Standards</h3>
+                    <p class="text-slate-600">Products supplied to international galvalume and paint system specifications.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">MTC</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mill Test Certificate</h3>
+                    <p class="text-slate-600">Coating weight and mechanical property documentation provided on request.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">RD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Reliable Delivery</h3>
+                    <p class="text-slate-600">Coordinated delivery aligned with your roofing or cladding installation programme.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-[hsl(206,91%,30%)] text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Ready to Order?</h2>
+                <p class="text-white/90 mb-8">
+                    Send your roof and wall schedule — we will align PPGL supply with your PEB or structural design.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-4">Call Us</h3>
+                    <p class="text-sm mb-2">0325 5559798</p>
+                    <p class="text-sm">0329 4236094</p>
+                </div>
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-4">WhatsApp</h3>
+                    <p class="text-sm mb-2">Quick responses</p>
+                    <p class="text-sm">Raiwind, Lahore</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="{% url 'home' %}#contact" class="bg-white text-[hsl(206,91%,30%)] px-6 py-3 rounded-lg font-medium hover:bg-slate-100 inline-block">
+                    Send Enquiry
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Steel Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'hrc_detail' %}" class="hover:text-slate-900">HRC Coils</a></li>
+                        <li><a href="{% url 'ms_sheets' %}" class="hover:text-slate-900">MS Sheets</a></li>
+                        <li><a href="{% url 'ppgl' %}" class="hover:text-slate-900">PPGL Sheets</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Full Catalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Consumables</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'electrodes' %}" class="hover:text-slate-900">Electrodes</a></li>
+                        <li><a href="{% url 'welding_wire' %}" class="hover:text-slate-900">Welding Wire</a></li>
+                        <li><a href="{% url 'bolts' %}" class="hover:text-slate-900">Nuts & Bolts</a></li>
+                        <li><a href="{% url 'abrasive_discs' %}" class="hover:text-slate-900">Cutting Discs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact Us</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Product Catalog</a></li>
+                        <li><a href="{% url 'home' %}#overview" class="hover:text-slate-900">About Us</a></li>
+                        <li><a href="{% url 'home' %}#services" class="hover:text-slate-900">Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#overview" class="hover:text-slate-900">Overview</a></li>
+                        <li><a href="{% url 'home' %}#services" class="hover:text-slate-900">Services</a></li>
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Enquire</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Browse Catalog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-600">
+                <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-600');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            event.target.classList.remove('text-slate-600');
+        }
+    </script>
+</body>
+</html>

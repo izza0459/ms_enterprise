@@ -1,0 +1,406 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grinding Discs - Surface Grinding & Smoothing | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active {
+            background-color: hsl(206, 91%, 30%);
+            color: white;
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground">Home</a>
+                        <a href="{% url 'catalog' %}" class="text-muted-foreground hover:text-foreground">Catalog</a>
+                        <a href="{% url 'home' %}#contact" class="text-muted-foreground hover:text-foreground">Contact</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-[hsl(206,91%,30%)] text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Surface Grinding
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">Grinding Discs</h1>
+                    <p class="text-xl text-slate-600 mb-6">
+                        Professional grinding discs for surface grinding, smoothing, and material removal in metalworking applications.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Superior surface finishing
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Aggressive material removal
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Long-lasting, heat-resistant
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="{% url 'home' %}#contact" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img
+                        src="{% static 'images/construction.jpg' %}"
+                        alt="Grinding Discs - Surface Grinding & Smoothing"
+                        class="rounded-lg shadow-lg w-full"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Specifications</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    Thicker wheels designed for surface grinding, smoothing, and material removal operations.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex border-b mb-6">
+                    <button class="tab-button active px-6 py-3 font-medium rounded-t-lg" onclick="showTab('specifications')">
+                        Specifications
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('sizes')">
+                        Available Sizes
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('applications')">
+                        Applications
+                    </button>
+                </div>
+
+                <div id="specifications" class="tab-content active">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Disc Specifications</h3>
+                        <p class="text-slate-600 mb-6">Technical details for professional grinding discs</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Type</span>
+                                    <span>Type 27 (Depressed Centre)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Bond</span>
+                                    <span>Resin Bonded</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Abrasive</span>
+                                    <span>Aluminium Oxide / Zirconia</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Arbor</span>
+                                    <span>22.2 mm / 25.4 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Thickness</span>
+                                    <span>6 mm (heavy-duty grinding)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Standard</span>
+                                    <span>EN 12413 / ANSI B7.1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sizes" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Available Sizes & Specifications</h3>
+                        <p class="text-slate-600 mb-6">Heavy-duty wheels for surface grinding and smoothing</p>
+                        <div class="grid gap-4">
+                            <div class="bg-white p-4 rounded-lg border">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">125×6×22.2 mm (5″)</span>
+                                    <span class="text-sm bg-[hsl(206,91%,30%)] text-white px-2 py-1 rounded">Max 12,250 RPM</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-2">Ideal for: Stainless Steel, Hard Metals</p>
+                                <div class="text-xs text-slate-500">Weld seam grinding, surface preparation, rust removal</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">180×6×22.2 mm (7″)</span>
+                                    <span class="text-sm bg-[hsl(206,91%,30%)] text-white px-2 py-1 rounded">Max 8,500 RPM</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-2">Ideal for: Structural Steel, Pipes</p>
+                                <div class="text-xs text-slate-500">Large surface grinding, structural work, pipe preparation</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">230×6×22.2 mm (9″)</span>
+                                    <span class="text-sm bg-[hsl(206,91%,30%)] text-white px-2 py-1 rounded">Max 6,600 RPM</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-2">Ideal for: Iron, Metal Sheets</p>
+                                <div class="text-xs text-slate-500">Heavy material removal, large area grinding, fabrication work</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">355×6×25.4 mm (14″)</span>
+                                    <span class="text-sm bg-[hsl(206,91%,30%)] text-white px-2 py-1 rounded">Max 4,400 RPM</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mb-2">Ideal for: Welded Joints, Steel Structures</p>
+                                <div class="text-xs text-slate-500">Industrial grinding, heavy construction, shipbuilding</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applications" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Applications</h3>
+                        <p class="text-slate-600 mb-6">Industries and use cases for grinding discs</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Weld Seam Grinding & Finishing</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Surface Preparation for Coating</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Automotive Body & Rust Removal</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Metal Fabrication & Shaping</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Shipbuilding & Marine Construction</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Equipment Maintenance & Repair</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Variants -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Product Variants</h2>
+                <p class="text-slate-600">Four sizes for every grinding application</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">5″ Grinding</h3>
+                    <p class="text-slate-600 text-sm">125×6mm — portable grinders, tight spaces</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-2">7″ Grinding</h3>
+                    <p class="text-slate-600 text-sm">180×6mm — medium duty work, pipes</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">9″ Grinding</h3>
+                    <p class="text-slate-600 text-sm">230×6mm — heavy duty, large surfaces</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-2">14″ Grinding</h3>
+                    <p class="text-slate-600 text-sm">355×6mm — industrial heavy construction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Pricing & Orders</h2>
+                <p class="text-slate-600">Competitive pricing with bulk discounts</p>
+            </div>
+            <div class="text-center mt-8">
+                <p class="text-sm text-slate-600 mb-4">
+                    Prices vary by size and grit. Contact us for detailed pricing.
+                </p>
+                <a href="{% url 'home' %}#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium">
+                    Get Detailed Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Assurance -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quality & Assurance</h2>
+                <p class="text-slate-600">Professional-grade grinding tools with safety certifications</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">SS</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Safety Standards</h3>
+                    <p class="text-slate-600">All grinding discs meet EN 12413 and ANSI B7.1 safety standards</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">PT</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Performance Tested</h3>
+                    <p class="text-slate-600">Rigorous testing for durability and grinding performance</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">FD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fast Delivery</h3>
+                    <p class="text-slate-600">Quick delivery with secure packaging</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-[hsl(206,91%,30%)] text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Ready to Order?</h2>
+                <p class="text-white/90 mb-8">
+                    Contact our grinding experts for personalized quotes and technical support
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">Call Us</h3>
+                    <p class="text-sm mb-2">0325 5559798</p>
+                    <p class="text-sm">0329 4236094</p>
+                </div>
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
+                    <p class="text-sm mb-2">Quick responses</p>
+                    <p class="text-sm">Raiwind, Lahore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'hrc_detail' %}" class="hover:text-slate-900">HRC Coils</a></li>
+                        <li><a href="{% url 'ms_sheets' %}" class="hover:text-slate-900">MS Sheets</a></li>
+                        <li><a href="{% url 'ppgl' %}" class="hover:text-slate-900">PPGL Sheets</a></li>
+                        <li><a href="{% url 'electrodes' %}" class="hover:text-slate-900">Electrodes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">More Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'welding_wire' %}" class="hover:text-slate-900">Welding Wire</a></li>
+                        <li><a href="{% url 'bolts' %}" class="hover:text-slate-900">Nut & Bolts</a></li>
+                        <li><a href="{% url 'abrasive_discs' %}" class="hover:text-slate-900">Cutting Discs</a></li>
+                        <li><a href="{% url 'grinding' %}" class="hover:text-slate-900">Grinding Discs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact Us</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Full Catalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}" class="hover:text-slate-900">Home</a></li>
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-600">
+                <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-600');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            event.target.classList.remove('text-slate-600');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Electrodes — E6013 & E7018 | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active {
+            background-color: hsl(206, 91%, 30%);
+            color: white;
+        }
+        .product-panel { display: none; }
+        .product-panel.active { display: block; }
+        .variant-card { cursor: pointer; transition: all 0.2s; }
+        .variant-card.selected {
+            border-color: hsl(206, 91%, 30%);
+            background-color: hsl(206, 91%, 97%);
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground text-sm">Home</a>
+                        <a href="{% url 'catalog' %}" class="text-muted-foreground hover:text-foreground text-sm">Catalog</a>
+                        <a href="{% url 'home' %}#contact" class="text-muted-foreground hover:text-foreground text-sm">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-[hsl(206,91%,30%)] text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Welding Consumables
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">Welding Electrodes</h1>
+                    <p class="text-xl text-slate-600 mb-6">
+                        Two professional-grade electrode variants for every application — general-purpose E6013 and high-strength E7018.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            All-position welding capability
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Multiple diameters available
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            AWS & ISO certified
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="{% url 'home' %}#contact" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="{% static 'images/welding.jpeg' %}" alt="Welding Electrodes E6013 and E7018" class="rounded-lg shadow-lg w-full object-cover" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variant Selector -->
+    <section class="py-10 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-slate-900">Select Electrode Variant</h2>
+                <p class="text-slate-600 mt-2">Choose a variant to view its full specifications</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- E6013 Card -->
+                <div id="card-e6013" class="variant-card border-2 border-slate-200 rounded-xl p-6 bg-white hover-shadow selected"
+                     onclick="showProduct('e6013')">
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <span class="text-xs font-semibold text-[hsl(206,91%,30%)] uppercase tracking-wide">MS48/60-R</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">E6013</h3>
+                        </div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded">General Purpose</span>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">The most popular mild steel welding rod — smooth arc, all positions, excellent for light structures and sheet steel.</p>
+                    <div class="space-y-1 text-xs text-slate-500">
+                        <div>AWS A5.1 E6013 &nbsp;·&nbsp; ISO 2560-B-E43 &nbsp;·&nbsp; GB/T 5117 E4313</div>
+                        <div>AC or DC &nbsp;·&nbsp; 2.0–5.0 mm diameters</div>
+                    </div>
+                </div>
+
+                <!-- E7018 Card -->
+                <div id="card-e7018" class="variant-card border-2 border-slate-200 rounded-xl p-6 bg-white hover-shadow"
+                     onclick="showProduct('e7018')">
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <span class="text-xs font-semibold text-[hsl(206,91%,30%)] uppercase tracking-wide">MS58/70-1 LPH</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">E7018</h3>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">High Strength</span>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">Extra low hydrogen electrode for high tensile steels — superior crack resistance and low-temperature toughness.</p>
+                    <div class="space-y-1 text-xs text-slate-500">
+                        <div>AWS A5.1 E7018 &nbsp;·&nbsp; ISO 2560-B-E49 &nbsp;·&nbsp; GB/T 5117 E5018</div>
+                        <div>DC or AC≥70V &nbsp;·&nbsp; 2.0–5.0 mm diameters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Specifications</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto" id="spec-subtitle">Viewing specifications for E6013</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Tab buttons (shared) -->
+                <div class="flex border-b mb-6">
+                    <button class="tab-button active px-6 py-3 font-medium rounded-t-lg" onclick="showTab('specs')">
+                        Specifications
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('sizes')">
+                        Current Chart
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('applications')">
+                        Applications
+                    </button>
+                </div>
+
+                <!-- ===== E6013 PANELS ===== -->
+                <div class="product-panel active" id="panel-e6013">
+
+                    <div id="e6013-specs" class="tab-content active">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E6013 — Mechanical & Physical Properties</h3>
+                            <p class="text-slate-600 mb-6">High titania potassium type coating — smooth, shiny weld appearance</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Classification</span>
+                                        <span>AWS E6013</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Coating Type</span>
+                                        <span>High titania potassium</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Polarity</span>
+                                        <span>AC or DC</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Welding Position</span>
+                                        <span>All positions</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">AWS Standard</span>
+                                        <span>A5.1 E6013</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">ISO Standard</span>
+                                        <span>ISO 2560-B-E43 13 A</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">GB/T Standard</span>
+                                        <span>5117 E4313</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Other Standards</span>
+                                        <span>JIS Z3211 D4313 &nbsp;·&nbsp; CSA W48 E4313</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="e6013-sizes" class="tab-content">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E6013 — Recommended Current Chart</h3>
+                            <p class="text-slate-600 mb-6">AC or DC — current in Amperes</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm">
+                                    <thead>
+                                        <tr class="bg-[hsl(206,91%,30%)] text-white">
+                                            <th class="px-4 py-3 text-left rounded-tl-lg">Dia (mm)</th>
+                                            <th class="px-4 py-3 text-center">Flat & Horizontal (A)</th>
+                                            <th class="px-4 py-3 text-center rounded-tr-lg">Vertical & Overhead (A)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">2.0 mm</td><td class="px-4 py-3 text-center">50–70</td><td class="px-4 py-3 text-center">40–60</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">2.4 mm</td><td class="px-4 py-3 text-center">60–90</td><td class="px-4 py-3 text-center">50–80</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">2.5 mm</td><td class="px-4 py-3 text-center">60–90</td><td class="px-4 py-3 text-center">50–80</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">2.6 mm</td><td class="px-4 py-3 text-center">60–90</td><td class="px-4 py-3 text-center">50–80</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">3.15 mm</td><td class="px-4 py-3 text-center">80–120</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">3.2 mm</td><td class="px-4 py-3 text-center">80–120</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">3.25 mm</td><td class="px-4 py-3 text-center">80–120</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">4.0 mm</td><td class="px-4 py-3 text-center">150–180</td><td class="px-4 py-3 text-center">130–170</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">5.0 mm</td><td class="px-4 py-3 text-center">180–220</td><td class="px-4 py-3 text-center">—</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="e6013-applications" class="tab-content">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E6013 — Applications</h3>
+                            <p class="text-slate-600 mb-6">General-purpose mild steel welding across light and medium structures</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Sheet steel and light fabrication</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Ordinary tensile mild-steel structures</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Intermittent and short-run welding</span></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>General construction & repair</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Gates, grilles & mild steel fixtures</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Workshop & site maintenance</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /panel-e6013 -->
+
+                <!-- ===== E7018 PANELS ===== -->
+                <div class="product-panel" id="panel-e7018">
+
+                    <div id="e7018-specs" class="tab-content active">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E7018 — Mechanical & Physical Properties</h3>
+                            <p class="text-slate-600 mb-6">Extra low hydrogen potassium coating — ~110% efficiency with iron powder</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Classification</span>
+                                        <span>AWS E7018 / E7018-1</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Coating Type</span>
+                                        <span>Extra low hydrogen potassium</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Polarity</span>
+                                        <span>DC or AC ≥ 70V</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Welding Position</span>
+                                        <span>All positions</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">AWS Standard</span>
+                                        <span>A5.1 E7018-1 / E7018</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">ISO Standard</span>
+                                        <span>ISO 2560-B-E 49 18-1A</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">GB/T Standard</span>
+                                        <span>5117 E5018-1 / E5018</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-200">
+                                        <span class="font-medium">Other Standards</span>
+                                        <span>CSA W48 E4918-1-H8 &nbsp;·&nbsp; JIS Z3212 D5016</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
+                                <span class="font-semibold">Baking required:</span> 400°C for 1–2 hours before use. Electrodes ≤2.5 mm: 350°C, hold 1 hour.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="e7018-sizes" class="tab-content">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E7018 — Recommended Current Chart</h3>
+                            <p class="text-slate-600 mb-6">DC or AC ≥ 70V — current in Amperes</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm">
+                                    <thead>
+                                        <tr class="bg-[hsl(206,91%,30%)] text-white">
+                                            <th class="px-4 py-3 text-left rounded-tl-lg">Dia (mm)</th>
+                                            <th class="px-4 py-3 text-center">Flat & Horizontal (A)</th>
+                                            <th class="px-4 py-3 text-center rounded-tr-lg">Vertical & Overhead (A)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">2.0 mm</td><td class="px-4 py-3 text-center">60–90</td><td class="px-4 py-3 text-center">50–80</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">2.5 mm</td><td class="px-4 py-3 text-center">70–100</td><td class="px-4 py-3 text-center">60–70</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">2.6 mm</td><td class="px-4 py-3 text-center">70–100</td><td class="px-4 py-3 text-center">60–70</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">3.15 mm</td><td class="px-4 py-3 text-center">100–140</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">3.2 mm</td><td class="px-4 py-3 text-center">100–140</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">3.25 mm</td><td class="px-4 py-3 text-center">100–140</td><td class="px-4 py-3 text-center">80–110</td></tr>
+                                        <tr class="bg-white"><td class="px-4 py-3 font-medium">4.0 mm</td><td class="px-4 py-3 text-center">140–170</td><td class="px-4 py-3 text-center">130–150</td></tr>
+                                        <tr class="bg-slate-50"><td class="px-4 py-3 font-medium">5.0 mm</td><td class="px-4 py-3 text-center">190–240</td><td class="px-4 py-3 text-center">—</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="e7018-applications" class="tab-content">
+                        <div class="bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-2">E7018 — Applications</h3>
+                            <p class="text-slate-600 mb-6">High-strength and coded welding where crack resistance is critical</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Ships, boilers & pressure vessels</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Bridges & skyscrapers</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Offshore drilling platforms</span></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Nuclear power plants</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>High tensile & low alloy steels</span></div>
+                                    <div class="flex items-center"><div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div><span>Coded & certified weld joints</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /panel-e7018 -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Variants -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Available Variants</h2>
+                <p class="text-slate-600">Both electrodes available in multiple diameters</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-1">E6013 — Light</h3>
+                    <p class="text-xs text-[hsl(206,91%,30%)] font-medium mb-3">2.0 / 2.4 / 2.5 / 2.6 mm</p>
+                    <p class="text-slate-600 text-sm">Ideal for thin sheet steel, light fabrication and workshop repair.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-1">E6013 — Heavy</h3>
+                    <p class="text-xs text-amber-600 font-medium mb-3">3.15 / 3.2 / 3.25 / 4.0 / 5.0 mm</p>
+                    <p class="text-slate-600 text-sm">General structural welding, mild steel frames and medium sections.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-1">E7018 — Standard</h3>
+                    <p class="text-xs text-[hsl(206,91%,30%)] font-medium mb-3">2.0 / 2.5 / 2.6 / 3.15 / 3.2 / 3.25 mm</p>
+                    <p class="text-slate-600 text-sm">High-strength structural work and coded joints in all positions.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-1">E7018 — Heavy</h3>
+                    <p class="text-xs text-amber-600 font-medium mb-3">4.0 / 5.0 mm</p>
+                    <p class="text-slate-600 text-sm">Thick sections, heavy structural joints, boilers and pressure vessels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Orders -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Pricing & Orders</h2>
+                <p class="text-slate-600">Competitive pricing with volume discounts available</p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-slate-600 mb-6">
+                    Pricing is per kilogram based on diameter and order volume. Bulk discounts apply.
+                </p>
+                <a href="{% url 'home' %}#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium inline-block">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality & Assurance -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quality & Certification</h2>
+                <p class="text-slate-600">Both electrode types meet international welding standards</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">AWS</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">AWS Certified</h3>
+                    <p class="text-slate-600">E6013 (A5.1) and E7018 (A5.1) classifications fully met.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">QT</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quality Tested</h3>
+                    <p class="text-slate-600">Rigorous testing of arc stability, mechanical properties and weld quality.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">SP</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Secure Packaging</h3>
+                    <p class="text-slate-600">Moisture-resistant packaging to preserve electrode properties.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-[hsl(206,91%,30%)] text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Ready to Order?</h2>
+                <p class="text-white/90 mb-8">
+                    Contact our team for quotes on E6013 or E7018 electrodes and technical support.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">Call Us</h3>
+                    <p class="text-sm mb-2">0325 5559798</p>
+                    <p class="text-sm">0329 4236094</p>
+                </div>
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
+                    <p class="text-sm mb-2">Quick responses</p>
+                    <p class="text-sm">Raiwind, Lahore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Steel Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'hrc_detail' %}" class="hover:text-slate-900">HRC Coils</a></li>
+                        <li><a href="{% url 'ms_sheets' %}" class="hover:text-slate-900">MS Sheets</a></li>
+                        <li><a href="{% url 'ppgl' %}" class="hover:text-slate-900">PPGL Sheets</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Full Catalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Consumables</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'electrodes' %}" class="hover:text-slate-900">Electrodes</a></li>
+                        <li><a href="{% url 'welding_wire' %}" class="hover:text-slate-900">Welding Wire</a></li>
+                        <li><a href="{% url 'bolts' %}" class="hover:text-slate-900">Nuts & Bolts</a></li>
+                        <li><a href="{% url 'abrasive_discs' %}" class="hover:text-slate-900">Cutting Discs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact Us</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Product Catalog</a></li>
+                        <li><a href="{% url 'home' %}#overview" class="hover:text-slate-900">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}" class="hover:text-slate-900">Home</a></li>
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact</a></li>
+                        <li><a href="{% url 'grinding' %}" class="hover:text-slate-900">Grinding Discs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-600">
+                <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let activeTab = 'specs';
+
+        function showProduct(product) {
+            // Update variant cards
+            document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('card-' + product).classList.add('selected');
+
+            // Update product panels
+            document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + product).classList.add('active');
+
+            // Update subtitle
+            const labels = { e6013: 'E6013 — General Purpose', e7018: 'E7018 — High Strength' };
+            document.getElementById('spec-subtitle').textContent = 'Viewing specifications for ' + labels[product];
+
+            // Re-apply the active tab within the new panel
+            const panel = document.getElementById('panel-' + product);
+            panel.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            const target = document.getElementById(product + '-' + activeTab);
+            if (target) target.classList.add('active');
+        }
+
+        function showTab(tabName) {
+            activeTab = tabName;
+
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-600');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('text-slate-600');
+
+            // Find active panel and switch its tab
+            const activePanel = document.querySelector('.product-panel.active');
+            if (!activePanel) return;
+            activePanel.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            const target = activePanel.querySelector('#' + activePanel.id.replace('panel-', '') + '-' + tabName);
+            if (target) target.classList.add('active');
+        }
+
+        // Default: show E6013
+        showProduct('e6013');
+    </script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRC Coils - Hot Rolled Steel Coils | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active {
+            background-color: hsl(206, 91%, 30%);
+            color: white;
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground">Home</a>
+                        <a href="{% url 'catalog' %}" class="text-muted-foreground hover:text-foreground">Catalog</a>
+                        <a href="{% url 'home' %}#contact" class="text-muted-foreground hover:text-foreground">Contact</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-[hsl(206,91%,30%)] text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Industrial Grade Steel
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">HRC Coils</h1>
+                    <p class="text-xl text-slate-600 mb-6">
+                        Essential flat steel for construction, automotive and manufacturing. Made by hot rolling for strength,
+                        durability and flexibility.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            High strength & durability
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Excellent weldability
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Smooth surface finish
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="{% url 'home' %}#contact" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img
+                        src="{% static 'images/coil.jpg' %}"
+                        alt="HRC Coils - Hot Rolled Steel Coils"
+                        class="rounded-lg shadow-lg w-full"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Specifications</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    We ensure our HRC Coils meet industry standards with precise specifications for your projects.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex border-b mb-6">
+                    <button class="tab-button active px-6 py-3 font-medium rounded-t-lg" onclick="showTab('specifications')">
+                        Specifications
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('grades')">
+                        Grades & Standards
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('applications')">
+                        Applications
+                    </button>
+                </div>
+
+                <div id="specifications" class="tab-content active">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Dimensional Specifications</h3>
+                        <p class="text-slate-600 mb-6">Standard dimensions and tolerances for HRC Coils</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Thickness</span>
+                                    <span>1.2–25 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Width</span>
+                                    <span>600–2000 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Length/Form</span>
+                                    <span>As required - Coils or CTL</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Surface Finish</span>
+                                    <span>Black or P&O</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Edge Type</span>
+                                    <span>Mill Edge / Slit Edge</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Customization</span>
+                                    <span>Custom sizes on request</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="grades" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Available Grades</h3>
+                        <p class="text-slate-600 mb-6">Industry standard grades and certifications</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">Q195</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">Q235</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">SS400</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">ASTM A36</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">S235JR</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">S275JR</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">S355JR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applications" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Applications</h3>
+                        <p class="text-slate-600 mb-6">Industries and use cases for HRC Coils</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Construction & Infrastructure</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Automotive Manufacturing</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Machinery & Equipment</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Pipeline Systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Industrial Fabrication</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Structural Components</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Variants -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Product Variants</h2>
+                <p class="text-slate-600">Choose from our range of HRC Coil configurations</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Coil Form</h3>
+                    <p class="text-slate-600 text-sm">Standard coiled format for large-scale processing</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-2">Cut-to-Length</h3>
+                    <p class="text-slate-600 text-sm">Pre-cut sheets in bundles to your specified length</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Black Finish</h3>
+                    <p class="text-slate-600 text-sm">Standard mill finish with natural oxide layer</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-amber-500">
+                    <h3 class="text-lg font-bold mb-2">Pickled & Oiled</h3>
+                    <p class="text-slate-600 text-sm">Clean, protected surface for downstream processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Pricing & Orders</h2>
+                <p class="text-slate-600">Competitive pricing with volume discounts</p>
+            </div>
+            <div class="text-center mt-8">
+                <p class="text-sm text-slate-600 mb-4">
+                    Steel prices fluctuate daily. Contact us for current rates.
+                </p>
+                <a href="{% url 'home' %}#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium">
+                    Get Live Rate Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Assurance -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quality & Assurance</h2>
+                <p class="text-slate-600">Meets industry standards; quality & reliability for your projects</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">STD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Industry Standards</h3>
+                    <p class="text-slate-600">All products meet international quality standards and specifications</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">MTC</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mill Test Certificate</h3>
+                    <p class="text-slate-600">Complete documentation and certification provided with every order</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-sm font-bold text-white">RD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Reliable Delivery</h3>
+                    <p class="text-slate-600">On-time delivery with proper packaging and handling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-[hsl(206,91%,30%)] text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Ready to Order?</h2>
+                <p class="text-white/90 mb-8">
+                    Contact our steel experts for personalized quotes and technical support
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">Call Us</h3>
+                    <p class="text-sm mb-2">0325 5559798</p>
+                    <p class="text-sm">0329 4236094</p>
+                </div>
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
+                    <p class="text-sm mb-2">Quick responses</p>
+                    <p class="text-sm">Raiwind, Lahore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'hrc_detail' %}" class="hover:text-slate-900">HRC Coils</a></li>
+                        <li><a href="{% url 'ms_sheets' %}" class="hover:text-slate-900">MS Sheets</a></li>
+                        <li><a href="{% url 'ppgl' %}" class="hover:text-slate-900">PPGL Sheets</a></li>
+                        <li><a href="{% url 'electrodes' %}" class="hover:text-slate-900">Electrodes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">More Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'welding_wire' %}" class="hover:text-slate-900">Welding Wire</a></li>
+                        <li><a href="{% url 'bolts' %}" class="hover:text-slate-900">Nut & Bolts</a></li>
+                        <li><a href="{% url 'abrasive_discs' %}" class="hover:text-slate-900">Cutting Discs</a></li>
+                        <li><a href="{% url 'grinding' %}" class="hover:text-slate-900">Grinding Discs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact Us</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Full Catalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}" class="hover:text-slate-900">Home</a></li>
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-600">
+                <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-600');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            event.target.classList.remove('text-slate-600');
+        }
+    </script>
+</body>
+</html>

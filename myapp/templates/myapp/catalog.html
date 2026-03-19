@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Products Catalog | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid rgba(206, 206, 206, 0.2);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(206, 91%, 30%, 0.15);
+            border-color: rgba(206, 91%, 30%, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground text-sm">Home</a>
+                        <a href="#steel-products" class="text-muted-foreground hover:text-foreground text-sm">Steel</a>
+                        <a href="#welding-supplies" class="text-muted-foreground hover:text-foreground text-sm">Welding</a>
+                        <a href="#fasteners" class="text-muted-foreground hover:text-foreground text-sm">Fasteners</a>
+                        <a href="#abrasives" class="text-muted-foreground hover:text-foreground text-sm">Abrasives</a>
+                    </nav>
+                </div>
+                <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                    Get Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block text-[hsl(206,91%,30%)] text-sm uppercase tracking-wider font-semibold mb-4">
+                        Product Lines
+                    </span>
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6">Industrial materials catalog.</h1>
+                    <p class="text-xl text-slate-300 leading-relaxed mb-8">
+                        Structured range of steel, welding consumables, fasteners and abrasives for civil and industrial projects.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-12">
+                        <a href="#steel-products" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium transition-all">
+                            Browse by category
+                        </a>
+                        <a href="#contact" class="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
+                            Request quote
+                        </a>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-slate-300">
+                            <span class="w-1.5 h-1.5 bg-[#f59e0b] rounded-full mr-3"></span>
+                            Single-source supply
+                        </div>
+                        <div class="flex items-center text-slate-300">
+                            <span class="w-1.5 h-1.5 bg-[#f59e0b] rounded-full mr-3"></span>
+                            Project-grade specifications
+                        </div>
+                        <div class="flex items-center text-slate-300">
+                            <span class="w-1.5 h-1.5 bg-[#f59e0b] rounded-full mr-3"></span>
+                            Support from selection to delivery
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop" alt="Industrial materials" class="rounded-lg shadow-2xl" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Product categories</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Jump directly to materials for your structural, envelope or fabrication work</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <a href="#steel-products" class="service-card p-8 cursor-pointer group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[hsl(206,91%,30%)]">Steel products</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Hot rolled coils, sheets and pre-painted galvalume for structural applications.</p>
+                </a>
+
+                <a href="#welding-supplies" class="service-card p-8 cursor-pointer group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#f59e0b]">Welding supplies</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Electrodes and wire specified for structural and fabrication work.</p>
+                </a>
+
+                <a href="#fasteners" class="service-card p-8 cursor-pointer group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[hsl(206,91%,30%)]">Fasteners</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Standard and high-strength nuts and bolts for structural connections.</p>
+                </a>
+
+                <a href="#abrasives" class="service-card p-8 cursor-pointer group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#f59e0b]">Abrasive tools</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Cutting and grinding discs for on-site and workshop metalwork.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steel Products -->
+    <section id="steel-products" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Steel products</h2>
+                <p class="text-lg text-slate-600 max-w-2xl">Flat and coiled material for beams, plate work, decking and cladding.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card p-8 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">HRC coils</h3>
+                    <p class="text-sm text-[hsl(206,91%,30%)] font-semibold mb-4 uppercase tracking-wide">Hot rolled coils · 1.2–25 mm · 600–2000 mm</p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Base material for structural members, fabrication and general industrial steel work.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'hrc_detail' %}" class="flex-1 bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[hsl(206,91%,30%)] text-[hsl(206,91%,30%)] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-50 transition-all">Get quote</a>
+                    </div>
+                </div>
+
+                <div class="service-card p-8 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">MS sheets</h3>
+                    <p class="text-sm text-[#f59e0b] font-semibold mb-4 uppercase tracking-wide">Mild steel sheets · common structural grades</p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Cut, formed and welded for plate work, gussets, base plates and general fabrication.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'ms_sheets' %}" class="flex-1 bg-[#f59e0b] hover:bg-[#f39c08] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[#f59e0b] text-[#f59e0b] px-4 py-2 rounded text-sm font-medium text-center hover:bg-amber-50 transition-all">Get quote</a>
+                    </div>
+                </div>
+
+                <div class="service-card p-8 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">PPGL sheets</h3>
+                    <p class="text-sm text-[hsl(206,91%,30%)] font-semibold mb-4 uppercase tracking-wide">Pre-painted galvalume · roofing and cladding</p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Colour-coated, corrosion-resistant sheets for roofs, facades and envelope systems.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'ppgl' %}" class="flex-1 bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[hsl(206,91%,30%)] text-[hsl(206,91%,30%)] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-50 transition-all">Get quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welding Supplies -->
+    <section id="welding-supplies" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Welding supplies</h2>
+                <p class="text-lg text-slate-300 max-w-2xl">Atlantic-brand consumables for structural joints, fabrication and repair.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:bg-slate-800/80 transition-all hover:border-[hsl(206,91%,30%)] group">
+                    <h3 class="text-2xl font-bold text-white mb-2">Welding Electrodes</h3>
+                    <p class="text-sm text-[hsl(206,91%,30%)] font-semibold mb-4 uppercase tracking-wide group-hover:text-[#f59e0b]">E6013 · E7018 — Two Variants</p>
+                    <p class="text-slate-300 leading-relaxed mb-4">
+                        General-purpose E6013 for everyday mild steel work, and high-strength low-hydrogen E7018 for structural and coded welding.
+                    </p>
+                    <div class="flex gap-2 mb-6">
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">E6013 — AC/DC</span>
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">E7018 — DC/AC≥70V</span>
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">2.0–5.0 mm</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="{% url 'electrodes' %}" class="flex-1 bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="{% url 'home' %}#contact" class="flex-1 border border-[hsl(206,91%,30%)] text-[hsl(206,91%,30%)] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-700 transition-all">Get quote</a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:bg-slate-800/80 transition-all hover:border-[#f59e0b] group">
+                    <h3 class="text-2xl font-bold text-white mb-2">Atlantic CO₂ welding wire</h3>
+                    <p class="text-sm text-[#f59e0b] font-semibold mb-4 uppercase tracking-wide group-hover:text-[hsl(206,91%,30%)]">ER70S-6 · 1.2 mm MIG wire</p>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Solid wire for CO₂ or mixed gas, used across industrial fabrication and structural work.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'welding_wire' %}" class="flex-1 bg-[#f59e0b] hover:bg-[#f39c08] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[#f59e0b] text-[#f59e0b] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-700 transition-all">Get quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasteners -->
+    <section id="fasteners" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Fasteners</h2>
+                <p class="text-lg text-slate-600 max-w-2xl">Connection hardware for steel structures, equipment and general construction.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="service-card p-8 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Standard nuts & bolts</h3>
+                    <p class="text-sm text-[hsl(206,91%,30%)] font-semibold mb-4 uppercase tracking-wide">Carbon steel · M6–M36</p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Everyday fasteners for secondary steel, supports and general mechanical fixing.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'bolts' %}" class="flex-1 bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[hsl(206,91%,30%)] text-[hsl(206,91%,30%)] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-50 transition-all">Get quote</a>
+                    </div>
+                </div>
+
+                <div class="service-card p-8 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">8.8 grade galvanized bolts</h3>
+                    <p class="text-sm text-[#f59e0b] font-semibold mb-4 uppercase tracking-wide">High-strength · hot-dip galvanized</p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Structural-grade fasteners for primary connections, towers and heavy assemblies.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'bolts' %}" class="flex-1 bg-[#f59e0b] hover:bg-[#f39c08] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[#f59e0b] text-[#f59e0b] px-4 py-2 rounded text-sm font-medium text-center hover:bg-amber-50 transition-all">Get quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abrasives -->
+    <section id="abrasives" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Abrasive tools</h2>
+                <p class="text-lg text-slate-300 max-w-2xl">Cutting and grinding discs sized for site work, fabrication shops and maintenance teams.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:bg-slate-800/80 transition-all hover:border-[hsl(206,91%,30%)] group">
+                    <h3 class="text-2xl font-bold text-white mb-2">Cutting discs</h3>
+                    <p class="text-sm text-[hsl(206,91%,30%)] font-semibold mb-4 uppercase tracking-wide group-hover:text-[#f59e0b]">Thin cut-off wheels · 100–355 mm</p>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Clean, controlled cuts in structural sections, plate, tube and bar.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'abrasive_discs' %}" class="flex-1 bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[hsl(206,91%,30%)] text-[hsl(206,91%,30%)] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-700 transition-all">Get quote</a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:bg-slate-800/80 transition-all hover:border-[#f59e0b] group">
+                    <h3 class="text-2xl font-bold text-white mb-2">Grinding discs</h3>
+                    <p class="text-sm text-[#f59e0b] font-semibold mb-4 uppercase tracking-wide group-hover:text-[hsl(206,91%,30%)]">Depressed-centre wheels · 115–355 mm</p>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Material removal, weld dressing and surface preparation on carbon and stainless steel.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'grinding' %}" class="flex-1 bg-[#f59e0b] hover:bg-[#f39c08] text-white px-4 py-2 rounded text-sm font-medium text-center transition-all">View details</a>
+                        <a href="#contact" class="flex-1 border border-[#f59e0b] text-[#f59e0b] px-4 py-2 rounded text-sm font-medium text-center hover:bg-slate-700 transition-all">Get quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-[hsl(206,91%,30%)] to-[hsl(206,91%,35%)] text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Need a consolidated quote?</h2>
+            <p class="text-white/90 mb-8 max-w-2xl mx-auto">Contact our team with your project specifications. We provide clear pricing, availability and delivery options.</p>
+            <a href="mailto:info@msconstruction.com" class="inline-block bg-white text-[hsl(206,91%,30%)] px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all">
+                Get in touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4 text-center text-sm text-slate-600">
+            <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+        </div>
+    </footer>
+</body>
+</html>

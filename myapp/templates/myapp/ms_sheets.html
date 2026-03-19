@@ -1,0 +1,396 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Sheets — Mild Steel Plate | MS Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(206, 91%, 30%)',
+                        'primary-foreground': '#ffffff',
+                        accent: '#f59e0b',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        card: '#f8fafc',
+                        'card-foreground': '#0f172a',
+                        muted: '#f1f5f9',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active {
+            background-color: hsl(206, 91%, 30%);
+            color: white;
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+
+    <!-- Header -->
+    <header class="border-b bg-muted sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">MS Construction</h1>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="{% url 'home' %}" class="text-muted-foreground hover:text-foreground text-sm">Home</a>
+                        <a href="{% url 'catalog' %}" class="text-muted-foreground hover:text-foreground text-sm">Catalog</a>
+                        <a href="{% url 'home' %}#contact" class="text-muted-foreground hover:text-foreground text-sm">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'home' %}#contact" class="border border-primary text-primary px-4 py-2 rounded hover:bg-muted text-sm">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-[hsl(206,91%,30%)] text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        Steel Products
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">MS Sheets</h1>
+                    <p class="text-xl text-slate-600 mb-6">
+                        Low-carbon mild steel sheets for plate work, brackets and general fabrication — easy to cut, form and weld on site or in the workshop.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Thickness 0.5–12 mm typical
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Common grades A36 / IS 2062
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <span class="w-4 h-4 mr-2 text-amber-500">✓</span>
+                            Mill certificates on request
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="{% url 'home' %}#contact" class="bg-[hsl(206,91%,30%)] hover:bg-[hsl(206,91%,25%)] text-white px-6 py-3 rounded-lg font-medium">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="{% static 'images/construction.jpg' %}" alt="MS Mild Steel Sheets" class="rounded-lg shadow-lg w-full" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Technical Specifications</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    Typical ranges for plate work — final dimensions are agreed against your nesting and cutting plans.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex border-b mb-6">
+                    <button class="tab-button active px-6 py-3 font-medium rounded-t-lg" onclick="showTab('specifications')">
+                        Specifications
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('grades')">
+                        Grades & Standards
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium rounded-t-lg text-slate-600" onclick="showTab('applications')">
+                        Applications
+                    </button>
+                </div>
+
+                <div id="specifications" class="tab-content active">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Dimensional Range</h3>
+                        <p class="text-slate-600 mb-6">Standard and custom dimensions for structural plate work</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Thickness</span>
+                                    <span>0.5–12 mm (heavier on request)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Supply Form</span>
+                                    <span>Standard stock or cut-to-size</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Surface Finish</span>
+                                    <span>HR, CR, GI, pickled & oiled</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Edge Type</span>
+                                    <span>Mill or sheared / slit</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Core Grades</span>
+                                    <span>ASTM A36 / IS 2062 / SS400</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-200">
+                                    <span class="font-medium">Documentation</span>
+                                    <span>Mill certificates when required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="grades" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Available Grades</h3>
+                        <p class="text-slate-600 mb-6">Industry-standard structural grades</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">ASTM A36</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">IS 2062</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">SS400</div>
+                            </div>
+                            <div class="text-center p-4 border border-slate-200 rounded-lg bg-white">
+                                <div class="font-semibold text-[hsl(206,91%,30%)]">S235JR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applications" class="tab-content">
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">Applications</h3>
+                        <p class="text-slate-600 mb-6">MS sheets sit behind most plate-based details on a civil or industrial project</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Base plates and gussets</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Equipment skids and frames</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Ducting and guards</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>General fabrication</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Structural connections</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                                    <span>Machine frames and housings</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Variants -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Product Variants</h2>
+                <p class="text-slate-600">Surface finish and form options to match your fabrication process</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Hot Rolled (HR)</h3>
+                    <p class="text-slate-600 text-sm">Standard black-finish plate for structural welding and heavy fabrication.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-lg font-bold mb-2">Cold Rolled (CR)</h3>
+                    <p class="text-slate-600 text-sm">Smooth, tight-tolerance sheet for precise forming and visible components.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[hsl(206,91%,30%)]">
+                    <h3 class="text-lg font-bold mb-2">Galvanised (GI)</h3>
+                    <p class="text-slate-600 text-sm">Zinc-coated for corrosion resistance in exposed or outdoor environments.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow hover-shadow transition-all p-6 border-l-4 border-l-[#f59e0b]">
+                    <h3 class="text-lg font-bold mb-2">Cut-to-Size</h3>
+                    <p class="text-slate-600 text-sm">Sheared to your plate schedule — reduces waste and speeds site handling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Orders -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Pricing & Orders</h2>
+                <p class="text-slate-600">Competitive pricing with volume discounts available</p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-slate-600 mb-6">
+                    Prices vary by grade, finish and order volume. Send your plate schedule and we will respond with pricing and availability.
+                </p>
+                <a href="{% url 'home' %}#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium inline-block">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality & Assurance -->
+    <section class="py-16 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Quality & Assurance</h2>
+                <p class="text-slate-600">Consistent quality across every batch and delivery</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">STD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Industry Standards</h3>
+                    <p class="text-slate-600">Products supplied against ASTM, IS and equivalent international structural grades.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">MTC</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mill Test Certificate</h3>
+                    <p class="text-slate-600">Chemical composition and mechanical property documentation provided when required.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[hsl(206,91%,30%)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xs font-bold text-white tracking-wide">RD</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Reliable Delivery</h3>
+                    <p class="text-slate-600">On-time delivery with bundled, labelled material for efficient site handling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-[hsl(206,91%,30%)] text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Ready to Order?</h2>
+                <p class="text-white/90 mb-8">
+                    Send your plate schedule and we will confirm stock, cutting options and pricing.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-4">Call Us</h3>
+                    <p class="text-sm mb-2">0325 5559798</p>
+                    <p class="text-sm">0329 4236094</p>
+                </div>
+                <div class="bg-white text-[hsl(206,91%,30%)] rounded-lg p-6 text-center">
+                    <h3 class="text-lg font-semibold mb-4">WhatsApp</h3>
+                    <p class="text-sm mb-2">Quick responses</p>
+                    <p class="text-sm">Raiwind, Lahore</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="{% url 'home' %}#contact" class="bg-white text-[hsl(206,91%,30%)] px-6 py-3 rounded-lg font-medium hover:bg-slate-100 inline-block">
+                    Send Enquiry
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Steel Products</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'hrc_detail' %}" class="hover:text-slate-900">HRC Coils</a></li>
+                        <li><a href="{% url 'ms_sheets' %}" class="hover:text-slate-900">MS Sheets</a></li>
+                        <li><a href="{% url 'ppgl' %}" class="hover:text-slate-900">PPGL Sheets</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Full Catalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Consumables</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'electrodes' %}" class="hover:text-slate-900">Electrodes</a></li>
+                        <li><a href="{% url 'welding_wire' %}" class="hover:text-slate-900">Welding Wire</a></li>
+                        <li><a href="{% url 'bolts' %}" class="hover:text-slate-900">Nuts & Bolts</a></li>
+                        <li><a href="{% url 'abrasive_discs' %}" class="hover:text-slate-900">Cutting Discs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Contact Us</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Product Catalog</a></li>
+                        <li><a href="{% url 'home' %}#overview" class="hover:text-slate-900">About Us</a></li>
+                        <li><a href="{% url 'home' %}#services" class="hover:text-slate-900">Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><a href="{% url 'home' %}#overview" class="hover:text-slate-900">Overview</a></li>
+                        <li><a href="{% url 'home' %}#services" class="hover:text-slate-900">Services</a></li>
+                        <li><a href="{% url 'home' %}#contact" class="hover:text-slate-900">Enquire</a></li>
+                        <li><a href="{% url 'catalog' %}" class="hover:text-slate-900">Browse Catalog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-600">
+                <p>&copy; 2026 MS Construction. All rights reserved. | Raiwind, Lahore, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-600');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            event.target.classList.remove('text-slate-600');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}MS Construction{% endblock %}</title>
+
+  <!-- Global styles (your site needs these for hero/buttons/variables) -->
+  <style>
+    :root{
+      --navy:#0B1220;
+      --charcoal:#0E1526;
+      --white:#FFFFFF;
+      --light-grey:rgba(255,255,255,0.72);
+      --brand-blue:#2E6BFF;
+      --brand-blue-light:#78A6FF;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--navy);
+      color:var(--white);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+
+    a{ color:var(--brand-blue-light); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .shell{ width:min(1120px, calc(100% - 48px)); margin:0 auto; }
+
+    .section{ padding:90px 0; }
+    .section-alt{ background: rgba(255,255,255,0.02); }
+
+    .section-header{ margin-bottom:40px; }
+    .section-title{ margin:0 0 12px 0; font-size:34px; font-weight:800; letter-spacing:-0.02em; }
+    .section-lead{ margin:0; color:var(--light-grey); max-width:75ch; line-height:1.6; }
+
+    /* HERO */
+    .hero{ padding:80px 0 60px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)); }
+    .hero-inner{
+      width:min(1120px, calc(100% - 48px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:50px;
+      align-items:center;
+    }
+    .hero-kicker{ font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); margin-bottom:10px; }
+    .hero-title{ margin:0; font-size:56px; line-height:1.05; letter-spacing:-0.02em; }
+    .hero-subtitle{ margin:18px 0 24px; color:var(--light-grey); font-size:17px; line-height:1.65; max-width:60ch; }
+
+    .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:10px;
+      border:1px solid rgba(184,192,204,0.18);
+      font-weight:700; font-size:14px;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(120,166,255,0.6); text-decoration:none; }
+    .btn-primary{ background: rgba(46,107,255,0.22); }
+    .btn-secondary{ background: rgba(255,255,255,0.03); }
+
+    .hero-meta{ display:flex; gap:14px; flex-wrap:wrap; color:rgba(255,255,255,0.65); font-size:13px; }
+    .hero-meta span{ padding:6px 10px; border-radius:999px; border:1px solid rgba(184,192,204,0.14); background: rgba(255,255,255,0.02); }
+
+    .hero-visual{ position:relative; min-height:340px; border-radius:16px; overflow:hidden; border:1px solid rgba(184,192,204,0.14); background: rgba(255,255,255,0.02); }
+    .hero-grid{
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity:0.35;
+    }
+    .hero-diagram{
+      position:absolute; right:18px; bottom:18px; left:18px;
+      padding:18px; border-radius:14px;
+      background: rgba(11,18,32,0.75);
+      border:1px solid rgba(184,192,204,0.14);
+      backdrop-filter: blur(10px);
+    }
+    .hero-diagram-title{ font-weight:800; margin-bottom:6px; }
+    .hero-diagram-sub{ color:var(--light-grey); font-size:13px; margin-bottom:12px; }
+    .hero-diagram-bars{ display:flex; gap:10px; align-items:flex-end; height:72px; }
+    .hero-bar{ flex:1; border-radius:10px; background: rgba(255,255,255,0.10); border:1px solid rgba(184,192,204,0.12); }
+    .hero-bar--primary{ background: rgba(120,166,255,0.25); border-color: rgba(120,166,255,0.5); }
+    .h1{ height:40%; } .h2{ height:55%; } .h3{ height:80%; }
+
+    /* STATS + CARDS (used later too) */
+    .stats-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:16px;
+      margin-top:28px;
+    }
+    .stat{
+      padding:18px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.02);
+      border:1px solid rgba(184,192,204,0.12);
+    }
+    .stat-number{ font-size:28px; font-weight:900; color:var(--brand-blue-light); }
+    .stat-label{ color:var(--light-grey); margin-top:6px; font-size:13px; }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:16px;
+    }
+    .service-card{
+      padding:18px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.02);
+      border:1px solid rgba(184,192,204,0.12);
+    }
+    .service-title{ font-weight:900; margin-bottom:8px; }
+    .service-copy{ margin:0; color:var(--light-grey); line-height:1.6; }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .contact-copy h3{ margin:0 0 10px 0; font-size:22px; }
+    .contact-copy p{ margin:0; color:var(--light-grey); line-height:1.6; }
+
+    .contact-form{
+      padding:18px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.02);
+      border:1px solid rgba(184,192,204,0.12);
+    }
+    .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+    label{ font-size:12px; color:rgba(255,255,255,0.75); }
+    input, textarea{
+      background: rgba(255,255,255,0.03);
+      border:1px solid rgba(184,192,204,0.14);
+      border-radius:10px;
+      padding:10px 12px;
+      color:var(--white);
+      outline:none;
+    }
+    textarea{ min-height:110px; resize:vertical; }
+
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns:1fr; }
+      .hero-title{ font-size:42px; }
+      .stats-grid{ grid-template-columns: repeat(2, 1fr); }
+      .services-grid{ grid-template-columns:1fr; }
+      .contact-grid{ grid-template-columns:1fr; }
+    }
+  </style>
+
+  {% block head_extra %}{% endblock %}
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+
+  {% block scripts %}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      if (window.AOS) AOS.init({ duration: 800, once: true, easing: 'ease-out-quad' });
+    </script>
+  {% endblock %}
+</body>
+</html>
